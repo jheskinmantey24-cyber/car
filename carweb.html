@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jheskin Motors - Find Your Dream Car Today</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .car-card:hover .car-image {
+            transform: scale(1.05);
+        }
+        .floating-btn {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="car" class="h-8 w-8 text-blue-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Jheskin Motors</span>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="#" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Rent a Car</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Buy a Car</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About Us</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Sign In</button>
+                    <button class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium transition duration-300">Sign Up</button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-feather="menu" class="block h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Rent a Car</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Buy a Car</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About Us</a>
+                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+                <div class="mt-4 pl-3">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium w-full mb-2">Sign In</button>
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium w-full">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-gray-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-gray-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <div class="pt-24 sm:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                            <span class="block">Find Your</span>
+                            <span class="block text-blue-400">Dream Car Today</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Explore our premium collection of luxury, sports, and family cars available for rent or purchase at unbeatable prices.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition duration-300">
+                                    Rent Now
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition duration-300">
+                                    Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="http://static.photos/automotive/1200x630/1" alt="Luxury cars">
+        </div>
+    </div>
+
+    <!-- Search & Filter Section -->
+    <div class="bg-white shadow-lg -mt-10 mx-auto max-w-7xl rounded-lg relative z-20 px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+                <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+                <select id="brand" name="brand" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <option>All Brands</option>
+                    <option>Mercedes</option>
+                    <option>BMW</option>
+                    <option>Audi</option>
+                    <option>Toyota</option>
+                    <option>Ford</option>
+                </select>
+            </div>
+            <div>
+                <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                <select id="type" name="type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <option>All Types</option>
+                    <option>Luxury</option>
+                    <option>SUV</option>
+                    <option>Sedan</option>
+                    <option>Sports</option>
+                    <option>Electric</option>
+                </select>
+            </div>
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Price Range</label>
+                <select id="price" name="price" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <option>All Prices</option>
+                    <option>Under $50/day</option>
+                    <option>$50-$100/day</option>
+                    <option>$100-$200/day</option>
+                    <option>Over $200/day</option>
+                </select>
+            </div>
+            <div class="flex items-end">
+                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-300">
+                    Search Cars
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Featured Categories</h2>
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                Browse our popular car categories
+            </p>
+        </div>
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="award" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">Luxury</h3>
+            </a>
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="truck" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">SUVs</h3>
+            </a>
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="activity" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">Sports</h3>
+            </a>
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="battery-charging" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">Electric</h3>
+            </a>
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="shield" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">Family</h3>
+            </a>
+            <a href="#" class="group text-center">
+                <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-blue-50 transition duration-300">
+                    <i data-feather="box" class="h-10 w-10 text-blue-600 mx-auto"></i>
+                </div>
+                <h3 class="mt-4 font-medium text-gray-900 group-hover:text-blue-600 transition duration-300">Trucks</h3>
+            </a>
+        </div>
+    </div>
+
+    <!-- Featured Cars -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Featured Cars</h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                    Browse our collection of premium vehicles
+                </p>
+            </div>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Car Card 1 -->
+                <div class="car-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="car-image w-full h-full object-cover transition duration-500" src="http://static.photos/automotive/640x360/1" alt="Mercedes-Benz S-Class">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            Luxury
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Mercedes-Benz S-Class</h3>
+                                <p class="text-gray-600">2022 Model</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-500">From</p>
+                                <p class="text-xl font-bold text-blue-600">$120/day</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="users" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">5 Seats</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="droplet" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">Premium</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="settings" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">Automatic</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                                <i data-feather="calendar" class="h-4 w-4 mr-2"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 2 -->
+                <div class="car-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="car-image w-full h-full object-cover transition duration-500" src="http://static.photos/automotive/640x360/2" alt="Tesla Model S">
+                        <div class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            Electric
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Tesla Model S</h3>
+                                <p class="text-gray-600">2023 Model</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-500">From</p>
+                                <p class="text-xl font-bold text-blue-600">$150/day</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="users" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">5 Seats</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="zap" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">Electric</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="settings" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">Automatic</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                                <i data-feather="calendar" class="h-4 w-4 mr-2"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 3 -->
+                <div class="car-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="car-image w-full h-full object-cover transition duration-500" src="http://static.photos/automotive/640x360/3" alt="Toyota RAV4">
+                        <div class="absolute top-2 right-2 bg-yellow-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            SUV
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Toyota RAV4</h3>
+                                <p class="text-gray-600">2022 Model</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-500">From</p>
+                                <p class="text-xl font-bold text-blue-600">$75/day</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="users" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">5 Seats</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="compass" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">AWD</span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i data-feather="settings" class="h-4 w-4 mr-1"></i>
+                                <span class="text-sm">Automatic</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                                <i data-feather="calendar" class="h-4 w-4 mr-2"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+                    View All Cars
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">How It Works</h2>
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                Get your dream car in just 3 simple steps
+            </p>
+        </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div class="text-center">
+                <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center">
+                    <i data-feather="search" class="h-8 w-8 text-blue-600"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">1. Choose Your Car</h3>
+                <p class="mt-2 text-gray-600">
+                    Browse our extensive collection and find the perfect car for your needs.
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center">
+                    <i data-feather="calendar" class="h-8 w-8 text-blue-600"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">2. Book Online</h3>
+                <p class="mt-2 text-gray-600">
+                    Select your dates, choose any extras, and complete your booking securely.
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center">
+                    <i data-feather="key" class="h-8 w-8 text-blue-600"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">3. Pick Up & Enjoy</h3>
+                <p class="mt-2 text-gray-600">
+                    Collect your car from our location and enjoy your journey!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">What Our Customers Say</h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-300 sm:mt-4">
+                    Don't just take our word for it
+                </p>
+            </div>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full" src="http://static.photos/people/200x200/1" alt="Sarah Johnson">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Sarah Johnson</h4>
+                            <div class="flex items-center mt-1">
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "The Mercedes I rented was in perfect condition and made my business trip so comfortable. The booking process was seamless!"
+                    </p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full" src="http://static.photos/people/200x200/2" alt="Michael Chen">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Michael Chen</h4>
+                            <div class="flex items-center mt-1">
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "I bought my first car from Jheskin Motos and couldn't be happier. The team was professional and the car was exactly as described."
+                    </p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full" src="http://static.photos/people/200x200/3" alt="David Wilson">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">David Wilson</h4>
+                            <div class="flex items-center mt-1">
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                                <i data-feather="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "Excellent service! The Tesla I rented was fantastic and the pickup/drop-off process was super efficient. Will definitely use them again."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                Ready to find your dream car?
+            </h2>
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-blue-100 sm:mt-4">
+                Join thousands of satisfied customers today
+            </p>
+            <div class="mt-8">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-blue-600 bg-white hover:bg-gray-50 transition duration-300">
+                    Get Started Now
+                    <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Jheskin Motos</h3>
+                    <p class="mt-4 text-gray-400 text-sm">
+                        Your trusted partner for premium car rentals and purchases since 2010.
+                    </p>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="linkedin" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Services</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Car Rental</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Car Purchase</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Corporate Solutions</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Airport Pickup</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Company</h3>
+                    <div class="mt-4 space-y-4">
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">About Us</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Our Team</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Careers</a>
+                        <a href="#" class="block text-gray-400 hover:text-white text-sm">Blog</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase">Contact</h3>
+                    <div class="mt-4 space-y-4">
+                        <div class="flex items-start">
+                            <i data-feather="map-pin" class="h-5 w-5 text-gray-400 mt-0.5"></i>
+                            <p class="ml-2 text-gray-400 text-sm">123 Auto Street, Accra, Ghana</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="phone" class="h-5 w-5 text-gray-400 mt-0.5"></i>
+                            <p class="ml-2 text-gray-400 text-sm">+233 123 456 789</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="mail" class="h-5 w-5 text-gray-400 mt-0.5"></i>
+                            <p class="ml-2 text-gray-400 text-sm">info@jheskinmotos.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 Jheskin Motos. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Support Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="floating-btn bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition duration-300 hover:bg-blue-700">
+            <i data-feather="message-circle" class="h-6 w-6"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('[aria-controls="mobile-menu"]').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize animations
+        anime({
+
+
+
+
+
+
+
+            
+            targets: '.car-card',
+            translateY: [20, 0],
+            opacity: [0, 1],
+            delay: anime.stagger(100),
+            easing: 'easeOutQuad'
+        });
+
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3b82f6,
+            backgroundColor: 0x111827,
+            points: 12.00,
+            maxDistance: 24.00,
+            spacing: 18.00
+        });
+
+        // Initialize feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
